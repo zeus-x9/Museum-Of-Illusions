@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tunnel | The Museum of Illusions</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .tunnel {
+      position: relative;
+      width: 380px;
+      height: 380px;
+      margin: 10px 0;
+    }
+
+    .ring {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 4px solid #00ff66;
+      border-radius: 14%;
+      opacity: 0;
+      animation: tunnel 6s ease-in infinite;   /* ease-in = starts slow, speeds up */
+    }
+
+    /* every second ring is purple */
+    .ring:nth-child(even) {
+      border-color: #c04dff;
+    }
+
+    /* hover = freeze the animation */
+    .tunnel:hover .ring {
+      animation-play-state: paused;
+    }
+
+    @keyframes tunnel {
+      0%   { transform: scale(0.05) rotate(0deg);   opacity: 0; }
+      15%  { opacity: 1; }
+      100% { transform: scale(1.25) rotate(120deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-left">
+    <div class="nav-label">CSS</div>
+    <a class="btn" href="css1.html">Liquid Blob</a>
+    <a class="btn" href="css2.html">Tunnel</a>
+    <a class="btn" href="css3.html">3D Cube</a>
+    <a class="btn" href="css4.html">Hover Trail</a>
+  </nav>
+
+  <nav class="nav-right">
+    <div class="nav-label">JS</div>
+    <a class="btn purple" href="js1.html">Heat Map</a>
+    <a class="btn purple" href="js2.html">Pixel Art</a>
+    <a class="btn purple">Eyes</a>
+    <a class="btn purple">Glitch Game</a>
+  </nav>
+
+  <a class="btn nav-home" href="index.html">HOME</a>
+
+  <div class="blob green"></div>
+  <div class="blob purple"></div>
+
+  <main class="stage">
+    <h1 class="page-title">Infinite Tunnel</h1>
+
+    <div class="tunnel">
+      <div class="ring" style="animation-delay: 0s"></div>
+      <div class="ring" style="animation-delay: -0.75s"></div>
+      <div class="ring" style="animation-delay: -1.5s"></div>
+      <div class="ring" style="animation-delay: -2.25s"></div>
+      <div class="ring" style="animation-delay: -3s"></div>
+      <div class="ring" style="animation-delay: -3.75s"></div>
+      <div class="ring" style="animation-delay: -4.5s"></div>
+      <div class="ring" style="animation-delay: -5.25s"></div>
+    </div>
+
+    <p class="caption">
+      Eight flat squares, but your eyes see depth. Each one grows from the center with a
+      different <code>animation-delay</code>. Hover to freeze it.
+    </p>
+  </main>
+</body>
+</html>

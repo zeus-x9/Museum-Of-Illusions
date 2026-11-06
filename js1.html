@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heat Map | The Museum of Illusions</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .island{
+      height: fit-content;
+      width: fit-content;
+      padding: 20px 10px;
+      border-radius: 20px;
+      background-color: transparent;
+      transition: background-color 1s;
+    }
+    .island:hover{
+      background-color: rgba(0, 0, 0, 0.95);
+      transition: background-color 0.25s ease;
+      border:1px solid rgba(255, 255, 255, 0.219);
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-left">
+    <div class="nav-label">CSS</div>
+    <a class="btn" href="css1.html">Liquid Blob</a>
+    <a class="btn" href="css2.html">Tunnel</a>
+    <a class="btn" href="css3.html">3D Cube</a>
+    <a class="btn" href="css4.html">Hover Trail</a>
+  </nav>
+
+  <nav class="nav-right">
+    <div class="nav-label">JS</div>
+    <a class="btn purple" href="js1.html">Heat Map</a>
+    <a class="btn purple" href="js2.html">Pixel Art</a>
+    <a class="btn purple">Eyes</a>
+    <a class="btn purple">Glitch Game</a>
+  </nav>
+
+  <a class="btn nav-home" href="index.html">HOME</a>
+
+  <canvas id="bg"></canvas>
+
+  <main class="stage">
+    <div class="island">
+    <h1 class="page-title">Heat Map</h1>
+    <p class="caption">
+      Move your mouse around the screen. Dots are cold dark blue far away and turn
+      green, yellow, orange and finally red as the cursor gets close.
+    </p>
+    </div>
+  </main>
+  <script>
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+
+    let width, height;
+    let dots = [];
+
+    const SPACING = 30;
+
+    const mouse = { x: -1000, y: -1000, radius: 260 };
+
+    function setup() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+
+      dots = [];
+      for (let x = SPACING / 2; x < width; x += SPACING) {
+        for (let y = SPACING / 2; y < height; y += SPACING) {
+          dots.push({ x: x, y: y });
+        }
+      }
+    }
+
+    window.addEventListener('mousemove', function (event) {
+      mouse.x = event.clientX;
+      mouse.y = event.clientY;
+    });
+
+    document.addEventListener('mouseleave', function () { //to remove the heat map
+      mouse.x = -1000;
+      mouse.y = -1000;
+    });
+
+    window.addEventListener('resize', setup);
+
+    function drawDots() {
+      ctx.clearRect(0, 0, width, height);
+
+      dots.forEach(dot => {
+        const dx = mouse.x - dot.x;
+        const dy = mouse.y - dot.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        let size = 2;
+        let color = 'hsl(240, 80%, 22%)';
+
+        if (dist < mouse.radius) {
+          const factor = 1 - dist / mouse.radius;
+
+          size = 2 + factor * 9;
+
+          const hue = 240 - factor * 240;
+          const saturation = 80 + factor * 20;
+          const lightness = 22 + factor * 28;
+          color = `hsl(${hue},${saturation}%, ${lightness}%)`;
+        }
+
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      requestAnimationFrame(drawDots);
+    }
+
+    setup();
+    drawDots();
+  </script>
+</body>
+</html>

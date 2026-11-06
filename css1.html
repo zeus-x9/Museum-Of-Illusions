@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liquid Blob | The Museum of Illusions</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .blob-area {
+      position: relative;
+      width: 460px;
+      height: 420px;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .liquid {
+      position: absolute;
+      background: radial-gradient(circle at 30% 25%, #eaffe0, #00ff66 38%, #9d00ff 80%, #3b0a7a);
+      border-radius: 58% 42% 55% 45% / 48% 56% 44% 52%;
+      animation: liquid 9s ease-in-out infinite;    /* animation 2: the morph */
+    }
+
+    #blob  { width: 340px; height: 340px; left: 60px; top: 40px; }
+    .drop1 { width: 90px;  height: 90px;  right: 0;   top: 0;      animation-duration: 6s; }
+    .drop2 { width: 60px;  height: 60px;  left: 0;    bottom: 20px; animation-duration: 7s; animation-delay: -3s; }
+
+  @keyframes liquid {
+      0%, 100% { border-radius: 58% 42% 55% 45% / 48% 56% 44% 52%; transform: rotate(0deg)   scale(1); }
+      25%      { border-radius: 38% 62% 63% 37% / 55% 37% 63% 45%; transform: rotate(10deg)  scale(1.06); }
+      50%      { border-radius: 42% 58% 38% 62% / 62% 44% 56% 38%; transform: rotate(-8deg)  scale(0.96); }
+      75%      { border-radius: 63% 37% 50% 50% / 40% 60% 40% 60%; transform: rotate(6deg)   scale(1.08); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-25px); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-left">
+    <div class="nav-label">CSS</div>
+    <a class="btn" href="css1.html">Liquid Blob</a>
+    <a class="btn" href="css2.html">Tunnel</a>
+    <a class="btn" href="css3.html">3D Cube</a>
+    <a class="btn" href="css4.html">Hover Trail</a>
+  </nav>
+
+  <nav class="nav-right">
+    <div class="nav-label">JS</div>
+    <a class="btn purple" href="js1.html">Heat Map</a>
+    <a class="btn purple" href="js2.html">Pixel Art</a>
+    <a class="btn purple" >Eyes</a>
+    <a class="btn purple">Glitch Game</a>
+  </nav>
+
+  <a class="btn nav-home" href="index.html">HOME</a>
+
+  <div class="blob green"></div>
+  <div class="blob purple"></div>
+
+  <main class="stage">
+    <h1 class="page-title">Liquid Blob</h1>
+
+    <div class="blob-area">
+      <div class="liquid" id="blob"></div>
+      <div class="liquid drop1"></div>
+      <div class="liquid drop2"></div>
+    </div>
+
+    <p class="caption">
+      No JavaScript here. The "liquid" is just a div whose <code>border-radius</code>,
+      rotation and size change inside <code>@keyframes</code>.
+    </p>
+  </main>
+</body>
+</html>

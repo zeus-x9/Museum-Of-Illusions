@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixel Art | The Museum of Illusions</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(16, 28px);
+      gap: 2px;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 2px solid #c04dff;
+      border-radius: 10px;
+    }
+    .cell {
+      width: 28px;
+      height: 28px;
+      background: rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+    }
+    .cell:hover {
+      outline: 1px solid #00ff66;
+    }
+
+    #palette {
+      display: flex;
+      gap: 12px;
+      margin-top: 22px;
+    }
+    #palette button {
+      width: 40px;
+      height: 40px;
+      border: 3px solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    /* the last color you clicked stays highlighted */
+    #palette button:focus {
+      border-color: white;
+      outline: none;
+    }
+
+    #reset {
+      margin-top: 22px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-left">
+    <div class="nav-label">CSS</div>
+    <a class="btn" href="css1.html">Liquid Blob</a>
+    <a class="btn" href="css2.html">Tunnel</a>
+    <a class="btn" href="css3.html">3D Cube</a>
+    <a class="btn" href="css4.html">Hover Trail</a>
+  </nav>
+
+  <nav class="nav-right">
+    <div class="nav-label">JS</div>
+    <a class="btn purple" href="js1.html">Heat Map</a>
+    <a class="btn purple" href="js2.html">Pixel Art</a>
+    <a class="btn purple">Eyes</a>
+    <a class="btn purple">Glitch Game</a>
+  </nav>
+
+  <a class="btn nav-home" href="index.html">HOME</a>
+
+  <div class="blob green"></div>
+  <div class="blob purple"></div>
+
+  <main class="stage">
+    <h1 class="page-title">Pixel Art</h1>
+
+    <div id="grid"></div>
+
+    <div id="palette">
+      <button onclick="color = '#00ff66'" style="background: #00ff66"></button>
+      <button onclick="color = '#c04dff'" style="background: #c04dff"></button>
+      <button onclick="color = '#ff5be1'" style="background: #ff5be1"></button>
+      <button onclick="color = '#00e5ff'" style="background: #00e5ff"></button>
+      <button onclick="color = '#ffee00'" style="background: #ffee00"></button>
+      <button onclick="color = '#ff2a2a'" style="background: #ff2a2a"></button>
+      <button onclick="color = '#ff8a00'" style="background: #ff8a00"></button>
+      <button onclick="color = '#2a4bff'" style="background: #2a4bff"></button>
+      <!-- same color as an empty square = works as an eraser -->
+      <button onclick="color = 'rgba(255, 255, 255, 0.05)'" style="background: rgba(255, 255, 255, 0.05)"></button>
+    </div>
+
+    <button class="btn purple" id="reset" onclick="location.reload()">Reset</button>
+
+    <p class="caption">
+      Pick a color, then click the squares to paint them.
+      The dark box at the end paints squares back to empty.
+    </p>
+  </main>
+  <script>
+    let color = '#00ff66';   // the color we paint with
+
+    // make 16 x 12 squares, each one gets the current color when clicked
+    for (let i = 0; i < 16 * 12; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      cell.onclick = () => { cell.style.background = color; };
+      document.getElementById('grid').appendChild(cell);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hover Trail | The Museum of Illusions</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(8, 60px);
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .tile {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 2px solid rgba(0, 255, 102, 0.25);
+      transition: all 1.6s ease;
+    }
+
+    .tile:hover {
+      background: #e100ff;
+      border-color: #00ff66;
+      transform: rotate(90deg) scale(0.8);
+      transition: 0s;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-left">
+    <div class="nav-label">CSS</div>
+    <a class="btn" href="css1.html">Liquid Blob</a>
+    <a class="btn" href="css2.html">Tunnel</a>
+    <a class="btn" href="css3.html">3D Cube</a>
+    <a class="btn" href="css4.html">Hover Trail</a>
+  </nav>
+
+  <nav class="nav-right">
+    <div class="nav-label">JS</div>
+    <a class="btn purple" href="js1.html">Heat Map</a>
+    <a class="btn purple" href="js2.html">Pixel Art</a>
+    <a class="btn purple">Eyes</a>
+    <a class="btn purple">Glitch Game</a>
+  </nav>
+
+  <a class="btn nav-home" href="index.html">HOME</a>
+
+  <div class="blob green"></div>
+  <div class="blob purple"></div>
+
+
+  <main class="stage">
+    <h1 class="page-title">Hover Trail</h1>
+
+    <div class="tiles">
+      <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+      <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+      <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+      <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+      <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+    </div>
+
+    <p class="caption">
+      Move your mouse over the tiles and they leave a glowing trail. The trick: the hover
+      state has <code>transition: 0s</code> (instant) but the normal state has a long
+      transition, so tiles light up fast and fade back slowly.
+    </p>
+  </main>
+</body>
+</html>
